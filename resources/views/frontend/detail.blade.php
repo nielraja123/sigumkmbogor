@@ -1,11 +1,8 @@
 @extends('layouts.frontend')
-
 @section('css')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@2.4.0/Control.FullScreen.min.css">
-
     <style>
         html,
         body {
@@ -20,7 +17,6 @@
         }
     </style>
 @endsection
-
 @section('content')
     <div class="container my-4">
         <div class="row justify-content-center">
@@ -40,18 +36,14 @@
                             <h4><strong>Nama UMKM :</strong></h4>
                             <h5>{{ $spot->name }}</h5>
                         </p>
-
-                        
                         <p>
                             <h4><strong>Deskripsi :</strong></h4>
                             <p>{{ $spot->description }}</p>
                         </p>
-
                         <p>
                             <h4><strong>Kategori :</strong></h4>
                             <p>{{ $spot->category }}</p>
                         </p>
-
                         <p>
                             <h4><strong>Nama Pemilik :</strong></h4>
                             <p>{{ $spot->nama_pemilik }}</p>
@@ -60,24 +52,14 @@
                             <h4><strong>Nomor Telepon :</strong></h4>
                             <p>{{ $spot->nomor_telepon }}</p>
                         </p>
-
                         <p>
                             <h4><strong>Alamat :</strong></h4>
                             <p>{{ $spot->alamat }}</p>
                         </p>
-
                         <p>
                             <h4><strong>Kecamatan :</strong></h4>
                             <p>{{ $spot->kecamatan }}</p>
                         </p>
-                        
-
-                        {{-- <p>
-                        <h4>
-                            <strong>Gambar</strong>
-                        </h4>
-                        <img class="img-fluid" width="200" src="{{ $spot->getImageAsset() }}" alt="">
-                        </p> --}}
                     </div>
                 </div>
             </div>

@@ -39,24 +39,12 @@ class DataController extends Controller
             ->rawColumns(['action'])
             ->toJson();
     }
-    
-    // public function spot()
-    // {
-    //     $spot = Spot::latest()->get();
-    //     return datatables()->of($spot)
-    //     ->addColumn('action','backend.Spot.action')
-    //     ->addIndexColumn()
-    //     ->rawColumns(['action'])
-    //     ->toJson();
-    // }
     public function daftarumkm()
     {
         $categories = Spot::select('category')->distinct()->get()->pluck('category');
         return view('daftarumkm', compact('categories'));
     }
 
-
-    // test
     public function getUmkmStats(Request $request)
 {
     $category = $request->input('category', 'Semua');

@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4>Choropleth Persebaran UMKM per 2 Juni 2024</h4>
+                        <h4>Choropleth Persebaran UMKM</h4>
                     {{--  --}}
                     <select id="categoryDropdown" class="form-select mb-3" style="width: 200px;">
                         <option value=""selected  disabled>Pilih Kategori UMKM</option>
@@ -25,7 +25,9 @@
                     </select>
                     {{--  --}}
                     </div>
+                    
                     <div class="card-body">
+                        <p>Data diperbarui pada : 2 Juni 2024</p>
                         <div id="map" style="height: 500px"></div>
                       <div id="explanation" style="margin-top: 20px;"></div>
                     </div>
@@ -141,34 +143,6 @@ function updateExplanation(category) {
 
             explanationDiv.innerHTML = explanationHtml;
         }
-
-
-// function updateExplanation(category) {
-//             const explanationDiv = document.getElementById('explanation');
-//             const thresholds = colorThresholds[category];
-//             const explanationHtml = `
-//                 <h4>Penjelasan</h4>
-//                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
-//                     <div style="width: 20px; height: 20px; background-color: #00ff00; margin-right: 10px;"></div>
-//                     <span>Warna Hijau: Jumlah UMKM > ${thresholds.upper}</span>
-//                 </div>
-//                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
-//                     <div style="width: 20px; height: 20px; background-color: #ffff00; margin-right: 10px;"></div>
-//                     <span>Warna Kuning: Jumlah UMKM <= ${thresholds.upper} dan Jumlah UMKM > ${thresholds.lower}</span>
-//                 </div>
-//                 <div style="display: flex; align-items: center; margin-bottom: 10px;">
-//                     <div style="width: 20px; height: 20px; background-color: #ff0000; margin-right: 10px;"></div>
-//                     <span>Warna Merah: Jumlah UMKM <= ${thresholds.lower}</span>
-//                 </div>
-//                 <h4>Daftar Jumlah UMKM per kecamatan dengan kategori ${category}</h4>
-//                 <ol>
-//                     ${dataBogor.map(item => `<li>${item.NamaKecamatan}: ${category === 'Semua' ? item.JumlahUMKM : getDataByCode(item.KodeBPS, category) || 0}</li>`).join('')}
-//                 </ol>
-//             `;
-
-//             explanationDiv.innerHTML = explanationHtml;
-//         }
-// 
         function updateMap(category) {
             if (geoJsonLayer) {
                 map.removeLayer(geoJsonLayer);

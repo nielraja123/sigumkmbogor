@@ -162,27 +162,6 @@ class HomeController extends Controller
 
     return view('frontend.choroplethhome', compact('geojson', 'dataBogor', 'categories', 'categoryData', 'colorThresholds'));
 }
-
-    // public function choroplethhome()
-    // {
-    // // Membaca data GeoJSON dan CSV
-    // // $geojsonPath = public_path('TESTDATAFORCHOROPLETH/idn_admbnda_adm3_bps_20200401.json'); 
-    //     $geojsonPath = public_path('TESTDATAFORCHOROPLETH/map_line.json'); // Path ke file GeoJSON
-    //     $geojson = file_get_contents($geojsonPath);
-    
-    //     $csvPath = storage_path('TESTDATAFORCHOROPLETH/Demografi-Bogor.csv'); // Path ke file CSV
-    //     $csv = array_map('str_getcsv', file($csvPath));
-    //     $header = array_shift($csv);
-    //     $dataBogor = [];
-    //     foreach ($csv as $row) {
-    //         $dataBogor[] = array_combine($header, $row);
-    // }
-
-    // return view('frontend.choroplethhome', compact('geojson', 'dataBogor'));
-    // }
-
-    // testing shp file
-    
     public function spots()
     {
         $centerPoint = Centre_Point::first();
@@ -201,53 +180,4 @@ public function detailSpot($slug)
     $spot = Spot::where('slug',$slug)->first();
     return view('frontend.detail',['spot' => $spot]);
 }
-// public function spots()
-    // {
-    //     $centerPoint = Centre_Point::get()->first();
-    //     $spot = Spot::get();
-
-    //     return view('frontend.home',[
-    //         'centerPoint' => $centerPoint,
-    //         'spot' => $spot
-    //     ]);
-    // }
-
 }
-
-
-    // public function marker()
-    // {
-    //     return view('leaflet.marker');
-    // }
-    // public function circle()
-    // {
-    //     return view('leaflet.circle');
-    // }
-    // public function polygon()
-    // {
-    //     return view('leaflet.polygon');
-    // }
-    // public function polyline()
-    // {
-    //     return view('leaflet.polyline');
-    // }
-    // public function rectangle()
-    // {
-    //     return view('leaflet.rectangle');
-    // }
-    // public function layers()
-    // {
-    //     return view('leaflet.layer');
-    // }
-    // public function layer_group()
-    // {
-    //     return view('leaflet.layer_group');
-    // }
-    // public function geojson()
-    // {
-    //     return view('leaflet.geojson');
-    // }
-    // public function getCoordinate()
-    // {
-    //     return view('leaflet.get_coordinate');
-    // }

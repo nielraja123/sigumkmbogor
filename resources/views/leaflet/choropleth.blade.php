@@ -20,7 +20,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4>Choropleth Persebaran UMKM per 2 Juni 2024</h4>
+                        <h4>Choropleth Persebaran UMKM</h4>
                     {{--  --}}
                         <select id="categoryDropdown" class="form-select mb-3" style="width: 200px;">
                             <option value=""selected  disabled>Pilih Kategori UMKM</option>
@@ -32,33 +32,11 @@
                     {{--  --}}
                     </div>
                     <div class="card-body">
+                        <p>Data diperbarui pada : 2 Juni 2024</p>
                         <div id="map" style="height: 500px"></div>
                       <div id="explanation" style="margin-top: 20px;"></div>
                     </div>
                 </div>
-                {{-- <div class="card" style="margin-top: 20px;">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4>Statistik UMKM Terdata</h4>
-                    </div>
-                    <div class="card-body">
-                        <span><h5>Jumlah UMKM di terdata: {{ $totalUMKM }}</h5></span>
-                        <ol>
-                            <li>Bogor Barat: {{ $umkmPerKecamatan['Bogor Barat']['jumlah'] ?? 0 }}</li>
-                            <li>Bogor Selatan: {{ $umkmPerKecamatan['Bogor Selatan']['jumlah'] ?? 0 }}</li>
-                            <li>Bogor Tengah: {{ $umkmPerKecamatan['Bogor Tengah']['jumlah'] ?? 0 }}</li>
-                            <li>Bogor Timur: {{ $umkmPerKecamatan['Bogor Timur']['jumlah'] ?? 0 }}</li>
-                            <li>Bogor Utara: {{ $umkmPerKecamatan['Bogor Utara']['jumlah'] ?? 0 }}</li>
-                            <li>Tanah Sareal: {{ $umkmPerKecamatan['Tanah Sareal']['jumlah'] ?? 0 }}</li>
-                        </ol>
-                        <h5>Perhitungan Klasifikasi</h5>
-                        <ul>
-                            <li>Rata-rata: {{ $rataRataUMKM }}</li>
-                            <li>Standar Deviasi: {{ $standarDeviasi }}</li>
-                            <li>Batas Atas: {{ $batasAtas }}</li>
-                            <li>Batas Bawah: {{ $batasBawah }}</li>
-                        </ul>
-                    </div>
-                </div> --}}
                 <div class="card" style="margin-top: 20px;">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h4>Statistik UMKM Terdata</h4>
@@ -128,25 +106,6 @@ integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""><
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.5.0/leaflet-providers.js"></script>
 
 <script>
-// document.getElementById('categoryDropdownStats').addEventListener('change', function() {
-//     const selectedCategory = this.value;
-//     fetch(`{{ url('api/umkm-stats') }}?category=${selectedCategory}`)
-//         .then(response => response.json())
-//         .then(data => {
-//             document.getElementById('totalUMKM').textContent = data.totalUMKM;
-//             document.getElementById('umkmBogorBarat').textContent = data.umkmPerKecamatan['Bogor Barat'] ? data.umkmPerKecamatan['Bogor Barat'].jumlah : 0;
-//             document.getElementById('umkmBogorSelatan').textContent = data.umkmPerKecamatan['Bogor Selatan'] ? data.umkmPerKecamatan['Bogor Selatan'].jumlah : 0;
-//             document.getElementById('umkmBogorTengah').textContent = data.umkmPerKecamatan['Bogor Tengah'] ? data.umkmPerKecamatan['Bogor Tengah'].jumlah : 0;
-//             document.getElementById('umkmBogorTimur').textContent = data.umkmPerKecamatan['Bogor Timur'] ? data.umkmPerKecamatan['Bogor Timur'].jumlah : 0;
-//             document.getElementById('umkmBogorUtara').textContent = data.umkmPerKecamatan['Bogor Utara'] ? data.umkmPerKecamatan['Bogor Utara'].jumlah : 0;
-//             document.getElementById('umkmTanahSareal').textContent = data.umkmPerKecamatan['Tanah Sareal'] ? data.umkmPerKecamatan['Tanah Sareal'].jumlah : 0;
-//             document.getElementById('rataRataUMKM').textContent = data.rataRataUMKM;
-//             document.getElementById('standarDeviasi').textContent = data.standarDeviasi;
-//             document.getElementById('batasAtas').textContent = data.batasAtas;
-//             document.getElementById('batasBawah').textContent = data.batasBawah;
-//         });
-// });
-
 function updateStats(selectedCategory) {
     fetch(`{{ url('api/umkm-stats') }}?category=${selectedCategory}`)
         .then(response => response.json())
