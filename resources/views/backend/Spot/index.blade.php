@@ -55,32 +55,49 @@
 @push('javascript')
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(function() {
-            $('#dataSpot').DataTable({
+            var table = $('#dataSpot').DataTable({
                 processing: true,
                 serverSide: true,
-                responisve: true,
+                responsive: true,
                 lengthChange: true,
                 autoWidth: false,
                 ajax: '{{ route('spot.data') }}',
-                columns: [{
-                        data: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: true
-                    }, {
-                        data: 'name'
-                    },{
-                        data: 'coordinates'
-                    },{
-                        data: 'kecamatan'
-                    },{
-                        data: 'category'
-                    },{
-                        data: 'action'
-                    }
+                columns: [
+                    { data: 'DT_RowIndex', orderable: false, searchable: true },
+                    { data: 'name' },
+                    { data: 'coordinates' },
+                    { data: 'kecamatan' },
+                    { data: 'category' },
+                    { data: 'action', orderable: false, searchable: false }
                 ]
-            })
-        })
+            });
+
+            // Delegasi event handler untuk tombol delete
+            $('#dataSpot').on('click', '.btn-delete', function(e) {
+                e.preventDefault();
+                var href = $(this).data('url');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#deleteForm').attr('action', href).submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                    }
+                });
+            });
+        });
     </script>
 @endpush

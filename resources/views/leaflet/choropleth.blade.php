@@ -49,7 +49,7 @@
                         </select>
                     </div>
                     <div class="card-body">
-                        <span><h5>Jumlah UMKM di terdata: <span id="totalUMKM">{{ $totalUMKM }}</span></h5></span>
+                        <span><h5>Jumlah UMKM Terdata: <span id="totalUMKM">{{ $totalUMKM }}</span></h5></span>
                         
                         <ol id="umkmList">
                             <li>Bogor Barat: <span id="umkmBogorBarat">{{ $umkmPerKecamatan['Bogor Barat']['jumlah'] ?? 0 }}</span></li>
