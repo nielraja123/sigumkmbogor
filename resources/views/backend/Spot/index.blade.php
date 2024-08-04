@@ -85,9 +85,12 @@
                     { data: 'coordinates' },
                     { data: 'kecamatan' },
                     { data: 'category' },
+<<<<<<< HEAD
                     { data: 'confirmed', render: function(data, type, row) {
                         return data ? 'Ya' : 'Tidak';
                     }},
+=======
+>>>>>>> 9bda7455f86c490c2847ffb6b88d6ebcb90dea45
                     { data: 'action', orderable: false, searchable: false }
                 ]
             });
