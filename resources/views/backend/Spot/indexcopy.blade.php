@@ -14,6 +14,7 @@
                         <a href="{{ route('spot.create') }}" class="btn btn-info btn-sm float-end">Tambah UMKM</a>
                     </div>
                     <div class="card-body">
+
                         @if (session('success'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('success') }}
@@ -34,25 +35,10 @@
                                     <th>Koordinat</th>
                                     <th>Kecamatan</th>
                                     <th>Kategori</th>
-                                    <th>Konfirmasi</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach($spots as $spot)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $spot->name }}</td>
-                                        <td>{{ $spot->coordinates }}</td>
-                                        <td>{{ $spot->kecamatan }}</td>
-                                        <td>{{ $spot->category }}</td>
-                                        <td>{{ $spot->confirmed ? 'Ya' : 'Tidak' }}</td>
-                                        <td>
-                                            <!-- Button actions -->
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                         <form action="" method="POST" id="deleteForm">
                             @csrf
@@ -85,9 +71,6 @@
                     { data: 'coordinates' },
                     { data: 'kecamatan' },
                     { data: 'category' },
-                    { data: 'confirmed', render: function(data, type, row) {
-                        return data ? 'Ya' : 'Tidak';
-                    }},
                     { data: 'action', orderable: false, searchable: false }
                 ]
             });

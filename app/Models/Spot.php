@@ -10,12 +10,14 @@ class Spot extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getImageAsset()
     {
-        // if ($this->image) {
-        //     return asset('storage/ImageSpots/'.$this->image);
-        // }
-
         if ($this->image) {
             return asset('/upload/spots/'.$this->image);
         }
@@ -23,3 +25,21 @@ class Spot extends Model
         return 'https://placehold.co/150x200?text=No+Image';
     }
 }
+// class Spot extends Model
+// {
+//     use HasFactory;
+
+//     protected $guarded = [];
+//     public function getImageAsset()
+//     {
+//         // if ($this->image) {
+//         //     return asset('storage/ImageSpots/'.$this->image);
+//         // }
+
+//         if ($this->image) {
+//             return asset('/upload/spots/'.$this->image);
+//         }
+
+//         return 'https://placehold.co/150x200?text=No+Image';
+//     }
+// }

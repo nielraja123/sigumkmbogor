@@ -49,11 +49,57 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/choropleth" style="font-weight: bold; color: white;">Dashboard</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li> --}}
                 </ul>
                 <ul class="navbar-nav">
+                    @if(Auth::check())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="media d-flex align-items-center">
+                                    <div class="">
+                                        <span style="font-weight: bold; color: white;">Username : {{ auth()->user()->name }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <span class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
+                                {{--  --}}
+                                @php
+                                 $user = auth()->user();
+                                    $spot = auth()->user()->spots()->first();
+                                @endphp
+
+                                {{-- @if($spot && $spot->confirmed)
+                                    <a class="dropdown-item" href="{{ route('spot.edit', $spot->id) }}">Lihat UMKM</a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('spot.create') }}">Daftarkan UMKM</a>
+                                @endif --}}
+                                @if($user->admin == 1)
+                                <a class="dropdown-item" href="{{ route('spot.index') }}">Kelola UMKM</a>
+                            @else
+                                @if($spot && $spot->confirmed)
+                                    <a class="dropdown-item" href="{{ route('spot.edit', $spot->id) }}">Lihat UMKM</a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('spot.create') }}">Daftarkan UMKM</a>
+                                @endif
+                            @endif
+                                {{--  --}}
+                                <div role="separator" class="dropdown-divider my-1"></div>
+                                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                   Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </span>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('login') }}" style="font-weight: bold; color: white;">Login</a>
+                        </li>
+                    @endif
+                </ul>
+                
+                {{-- <ul class="navbar-nav">
                     @if(Auth::check())
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,31 +121,12 @@
                                 </form>
                             </s>
                         </li>
-                        {{-- <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="media d-flex align-items-center">
-                                    <div class="">
-                                        <span style="font-weight: bold; color: white;">Username : {{ auth()->user()->name }}</span>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                                <div role="separator" class="dropdown-divider my-1"></div>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                   Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li> --}}
                     @else
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('login') }}" style="font-weight: bold; color: white;">Login</a>
                         </li>
                     @endif
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </nav>

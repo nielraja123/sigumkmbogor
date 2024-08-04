@@ -128,19 +128,6 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            
-
-                            {{-- <div class="form-group my-3">
-                                <label for="">Upload Gambar</label>
-                                <input type="file" class="form-control @error('image')
-                                    is-invalid
-                                @enderror" name="image" >
-                                @error('image')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div> --}}
-
-
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-sm my-2">Simpan</button>
                             </div>

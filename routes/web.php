@@ -22,6 +22,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/umkm_data/data', [\App\Http\Controllers\Backend\DataController::class, 'umkm_data'])->name('umkm_data.data');
     Route::get('/spot/data', [\App\Http\Controllers\Backend\DataController::class, 'spot'])->name('spot.data');
     Route::resource('spot', \App\Http\Controllers\Backend\SpotController::class);
+
+    // Route::get('/umkm/register', [UMKMController::class, 'showRegisterForm'])->name('umkm.register.form');
+    // Route::post('/umkm/register', [UMKMController::class, 'register'])->name('umkm.register.submit');
+
      // ROUTES DIBAWAH INI HANYA BISA DIAKSES ADMIN
      Route::middleware(['admin'])->group(function () {
         Route::get('/choropleth', [App\Http\Controllers\HomeController::class, 'choropleth'])->name('choropleth');
@@ -30,6 +34,11 @@ Route::middleware(['auth'])->group(function () {
         // ^^^^
         Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
         Route::post('/users/{user}/toggle-admin', [App\Http\Controllers\UserController::class, 'toggleAdmin'])->name('user.toggleAdmin');
+
+        // 
+        Route::get('/umkm-pending', [\App\Http\Controllers\Backend\AdminUMKMController::class, 'index'])->name('admin.umkm.index');
+        Route::patch('/umkm-confirm/{id}', [\App\Http\Controllers\Backend\AdminUMKMController::class, 'confirm'])->name('admin.umkm.confirm');
+        // Route::post('/umkm-confirm/{id}', [\App\Http\Controllers\Backend\AdminUMKMController::class, 'confirm'])->name('admin.umkm.confirm');
     });
 });
 
