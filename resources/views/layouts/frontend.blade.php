@@ -67,20 +67,27 @@
                                     $spot = auth()->user()->spots()->first();
                                 @endphp
 
-                                {{-- @if($spot && $spot->confirmed)
-                                    <a class="dropdown-item" href="{{ route('spot.edit', $spot->id) }}">Lihat UMKM</a>
+                                @if($user->admin == 1)
+                                    <a class="dropdown-item" href="{{ route('spot.index') }}">Kelola UMKM</a>
+
+                                @else
+                                @if($spot)
+                                    @if($spot->confirmed)
+                                        <a class="dropdown-item" href="{{ route('spot.edit', $spot->id) }}">Lihat UMKM</a>
+                                    @else
+                                        <a class="dropdown-item" href="#">UMKM Sedang Menunggu Konfirmasi</a>
+                                    @endif
                                 @else
                                     <a class="dropdown-item" href="{{ route('spot.create') }}">Daftarkan UMKM</a>
-                                @endif --}}
-                                @if($user->admin == 1)
-                                <a class="dropdown-item" href="{{ route('spot.index') }}">Kelola UMKM</a>
-                            @else
+                                @endif
+                            @endif
+                            {{-- @else
                                 @if($spot && $spot->confirmed)
                                     <a class="dropdown-item" href="{{ route('spot.edit', $spot->id) }}">Lihat UMKM</a>
                                 @else
                                     <a class="dropdown-item" href="{{ route('spot.create') }}">Daftarkan UMKM</a>
                                 @endif
-                            @endif
+                            @endif --}}
                                 {{--  --}}
                                 <div role="separator" class="dropdown-divider my-1"></div>
                                 <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
@@ -98,35 +105,6 @@
                         </li>
                     @endif
                 </ul>
-                
-                {{-- <ul class="navbar-nav">
-                    @if(Auth::check())
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="media d-flex align-items-center">
-                                    <div class="">
-                                        <span style="font-weight: bold; color: white;">Username : {{ auth()->user()->name }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-                                <div role="separator" class="dropdown-divider my-1"></div>
-                                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                   Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </s>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('login') }}" style="font-weight: bold; color: white;">Login</a>
-                        </li>
-                    @endif
-                </ul> --}}
             </div>
         </div>
     </nav>
