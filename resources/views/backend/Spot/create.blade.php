@@ -200,5 +200,8 @@
             $('#longitude').val(coordinate.lng).keyup()
         })
         // CARA KEDUA
+        @if(session()->has('message'))
+            alert("{{ session('message') }}");
+        @endif
     </script>
 @endpush

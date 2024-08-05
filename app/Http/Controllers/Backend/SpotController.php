@@ -36,61 +36,6 @@ class SpotController extends Controller
         $centerPoint = Centre_Point::get()->first();
         return view('backend.Spot.create', ['centerPoint' => $centerPoint]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'coordinate' => 'required',
-    //         'name' => 'required',
-    //         'description' => 'required',
-    //         'category' => 'required',
-    //         'image' => 'file|image|mimes:png,jpg,jpeg',
-    //         'nama_pemilik' => 'required',
-    //         'alamat' => 'required',
-    //         'kecamatan' => 'required',
-    //         'nomor_telepon' => 'required'
-    //     ]);
-
-    //     $spot = new Spot;
-    //     if ($request->hasFile('image')) {
-
-    //         /**
-    //          * Upload file to public folder
-    //          */
-    //         $file = $request->file('image');
-    //         $uploadFile = $file->hashName();
-    //         $file->move('upload/spots/', $uploadFile);
-    //         $spot->image = $uploadFile;
-
-    //         /**
-    //          * Upload file image to storage
-    //          */
-    //         // $file = $request->file('image');
-    //         // $file->storeAs('public/ImageSpots',$file->hashName());
-    //         // $spot->image = $file->hashName();
-    //     }
-
-    //     $spot->name = $request->input('name');
-    //     $spot->slug = Str::slug($request->name, '-');
-    //     $spot->description = $request->input('description');
-    //     $spot->coordinates = $request->input('coordinate');
-    //     $spot->category = $request->input('category');
-    //     $spot->nama_pemilik = $request->input('nama_pemilik');
-    //     $spot->alamat = $request->input('alamat');
-    //     $spot->kecamatan = $request->input('kecamatan');
-    //     $spot->nomor_telepon = $request->input('nomor_telepon');
-    //     $spot->save();
-
-    //     if ($spot) {
-    //         return to_route('spot.index')->with('success', 'Data berhasil disimpan');
-    //     } else {
-    //         return to_route('spot.index')->with('error', 'Data gagal disimpan');
-    //     }
-    // }
-
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -126,8 +71,18 @@ class SpotController extends Controller
         $spot->confirmed = false; // Default belum dikonfirmasi
         $spot->save();
 
+        // if ($spot) {
+        //     return to_route('spot.index')->with('success', 'Data berhasil disimpan');
+        // } else {
+        //     return to_route('spot.index')->with('error', 'Data gagal disimpan');
+        // }
         if ($spot) {
-            return to_route('spot.index')->with('success', 'Data berhasil disimpan');
+            session()->flash('message', 'UMKM berhasil didaftarkan! tunggu konfirmasi admin.');
+            if (auth()->user()->admin == 1) {
+                return to_route('spot.index')->with('success', 'Data berhasil disimpan');
+            } else {
+                return redirect('/')->with('success', 'Data berhasil disimpan');
+            }
         } else {
             return to_route('spot.index')->with('error', 'Data gagal disimpan');
         }
@@ -186,14 +141,6 @@ class SpotController extends Controller
             $uploadFile = $file->hashName();
             $file->move('upload/spots/', $uploadFile);
             $spot->image = $uploadFile;
-
-            /**
-             * Proses hapus & upload file image ke folder public/upload/spots
-             */
-            // Storage::disk('local')->delete('public/ImageSpots/' . ($spot->image));
-            // $file = $request->file('image');
-            // $file->storeAs('public/ImageSpots', $file->hashName());
-            // $spot->image = $file->hashName();
         }
 
         $spot->name = $request->input('name');

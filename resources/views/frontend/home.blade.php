@@ -16,6 +16,11 @@
             </div>
         </div>
         <div class="row justify-content-center">
+            @if(session()->has('message'))
+            <script>
+                alert("{{ session('message') }}");
+            </script>
+        @endif
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
