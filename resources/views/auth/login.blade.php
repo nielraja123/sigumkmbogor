@@ -97,7 +97,7 @@
                         @csrf
                         <!-- Form -->
                         <div class="form-group mb-4">
-                            <label for="email">Username</label>
+                            <label for="email">Email</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1">
                                     <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
